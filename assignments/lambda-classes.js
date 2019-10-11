@@ -1,10 +1,6 @@
 // // CODE here for your Lambda Classes
 
 
-
-
-
-
 // #### Person
 
 // * First we need a Person class. This will be our `base-class`
@@ -40,7 +36,7 @@ class Instructor extends Person {
     }
     demo(subject) {return `Today we ar learning about ${subject}`}
     grade(student, subject) {return `${student.name} receives a perfect score on ${subject}`}
-    gradeTroll(student) {return (student.grade - Math.floor((Math.random() * 100) + 1)) }
+    gradeTroll(student) {student.grade = (student.grade - Math.floor((Math.random() * 100) + 1)) }
 }
 
 // #### Student
@@ -66,6 +62,7 @@ class Student extends Person {
     listsSubjects() {return this.favSubjects.map(subject)}
     PRAssignment(subject) {return `${this.name} has submitted a PR for ${subject}`}
     sprintChallenge(subject) {return `${this.name} has begun sprint challenge on ${subject}`}
+    graduate() { if (this.grade > 69) {return `${this.name} has graduated!`} else {return `look into extra credit`} }
 }
 
 // #### Project Manager
@@ -113,7 +110,7 @@ const cyril = new Student({
     favLanguage: 'Basic',
     speciality: 'Data Base',
     catchPhrase: `I happen to be a kickass accountant!`,
-    grade: 80
+    grade: 100
 });
 
 const cheryl = new Student({
@@ -123,7 +120,7 @@ const cheryl = new Student({
     favLanguage: 'wingdings',
     speciality: 'Turning it off and back on again',
     catchPhrase: `Where ISN'T the bathroom? Am I right?`,
-    grade: 80
+    grade: 100
 });
 
 
@@ -134,6 +131,8 @@ const cheryl = new Student({
   console.log(cyril);
 
   console.log(lana.gradeTroll(cheryl));
+  console.log(cheryl.grade);
+  console.log(cheryl.graduate());
 
 //   * Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
 // * Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
